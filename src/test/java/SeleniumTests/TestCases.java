@@ -1,15 +1,15 @@
 package SeleniumTests;
 
-import PageObjects.Footer;
-import PageObjects.SocialMediaPages.Facebook;
-import PageObjects.SocialMediaPages.Instagram;
-import PageObjects.SocialMediaPages.LinkedIn;
+import PageObjects.*;
+import PageObjects.BlueContainer.Footer;
+import PageObjects.ThirdPartyLinkedPages.Facebook;
+import PageObjects.ThirdPartyLinkedPages.GoogleMaps;
+import PageObjects.ThirdPartyLinkedPages.Instagram;
+import PageObjects.ThirdPartyLinkedPages.LinkedIn;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -20,14 +20,21 @@ public class TestCases {
     WebDriver browser;
 
     private String homePageUrl = "https://www.claremont.se/";
-    private String searchInput = "Test";
-    private String pageTitle = "Claremont l Consulting made personal - Claremont";
+    private String searchResultsUrl = "Sök - Claremont";
+    private String whatWeDoPageUrl = "https://www.claremont.se/vad-vi-gor/";
+    private String whatWeHaveDonePageUrl = "https://www.claremont.se/vad-vi-gjort/";
+    private String workForUsPageUrl = "https://www.claremont.se/jobba-hos-oss/";
+    private String relevantPageUrl = "https://www.claremont.se/aktuellt/";
+    private String aboutUsPageUrl = "https://www.claremont.se/om-oss/";
+    private String contactPageUrl = "https://www.claremont.se/kontakt/";
+
     private String instagramPage = "https://www.instagram.com/claremont_se/";
     private String facebookPage = "https://www.facebook.com/ClaremontSverige";
     private String linkedInTitle = "LinkedIn: Log In or Sign Up";
 
-    By searchButtonPath = By.className("search");
-    By searchResultButtonPath = By.xpath("//*[@id=\"app\"]/header/div[2]/div/form/fieldset/input[2]");
+    private String googleMapsTitle = "Birger Jarlsgatan 7 - Google Maps";
+    private String visiblePhoneNumber = "08-406 68 00";
+    private String visibleEmailAddress = "info@claremont.se";
 
     @Before
     public void setUp() {
@@ -45,52 +52,76 @@ public class TestCases {
     }
 
     @Test
-    public void verifyPage() {
+    public void getPageUrl() {
 
         Assert.assertEquals(homePageUrl, browser.getCurrentUrl());
     }
     @Test
     public void searchWithoutInput() {
 
-        browser.findElement(searchButtonPath).click();
-        browser.findElement(searchResultButtonPath).sendKeys(Keys.ENTER);
+        StartPage startPage = new StartPage(browser);
+        SearchResults searchPage = startPage.getSearchResults(false);
 
-        Assert.assertEquals(pageTitle, browser.getTitle());
+        Assert.assertEquals(searchResultsUrl, searchPage.getPageTitle());
     }
     @Test
     public void searchWithInput() {
 
-        browser.findElement(searchButtonPath).click();
-        browser.findElement(searchResultButtonPath).sendKeys(searchInput);
+        StartPage startPage = new StartPage(browser);
+        SearchResults searchPage = startPage.getSearchResults(true);
 
-        Assert.assertEquals(pageTitle, browser.getTitle());
+        Assert.assertEquals(searchResultsUrl, searchPage.getPageTitle());
     }
-    /*
     @Test
     public void clickOnWhatWeDoLinkInFooter() {
 
+        Footer footer = new Footer(browser);
+        WhatWeDo wwdPage = footer.visitWhatWeDo();
+
+        Assert.assertEquals(whatWeDoPageUrl, wwdPage.verifyPage());
     }
     @Test
     public void clickOnWhatWeHaveDoneLinkInFooter() {
 
+        Footer footer = new Footer(browser);
+        WhatWeHaveDone wwhdPage = footer.visitWhatWeHaveDone();
+
+        Assert.assertEquals(whatWeHaveDonePageUrl, wwhdPage.verifyPage());
     }
     @Test
-    public void clickOnWorkWithUsLinkInFooter() {
+    public void clickOnWorkForUsLinkInFooter() {
 
+        Footer footer = new Footer(browser);
+        WorkForUs wfuPage = footer.visitWorkForUs();
+
+        Assert.assertEquals(workForUsPageUrl, wfuPage.verifyPage());
     }
     @Test
-    public void clickOnCurrentLinkInFooter() {
+    public void clickOnRelevantLinkInFooter() {
 
+        Footer footer = new Footer(browser);
+        RelevantPage relevantPage = footer.visitRelevantPage();
+
+        Assert.assertEquals(relevantPageUrl, relevantPage.verifyPage());
     }
     @Test
     public void clickOnAboutUsLinkInFooter() {
+
+        Footer footer = new Footer(browser);
+        AboutUs aboutUsPage = footer.visitAboutUsPage();
+
+        Assert.assertEquals(aboutUsPageUrl, aboutUsPage.verifyPage());
 
     }
     @Test
     public void clickOnContactLinkInFooter() {
 
+        Footer footer = new Footer(browser);
+        Contact contactPage = footer.visitContactPage();
+
+        Assert.assertEquals(contactPageUrl, contactPage.getPageUrl());
     }
-    */
+
     @Test
     public void clickOnInstagramLinkInFooter() {
 
@@ -115,4 +146,27 @@ public class TestCases {
 
         Assert.assertEquals(linkedInTitle, linkedIn.verifyPage());
     }
+    @Test
+    public void clickOnAddressInFooter() {
+
+        Footer footer = new Footer(browser);
+        GoogleMaps googleMapsPage = footer.goToAddress();
+
+        Assert.assertEquals(googleMapsTitle, googleMapsPage.getPageTitle());
+    }
+    @Test
+    public void checkPhoneNumberInFooter() {
+
+        Footer footer = new Footer(browser);
+
+        Assert.assertEquals(visiblePhoneNumber, footer.getPhoneNumber());
+    }
+    @Test
+    public void checkMailAddressInFooter() {
+
+        Footer footer = new Footer(browser);
+
+        Assert.assertEquals(visibleEmailAddress, footer.getEmailAddress());
+    }
+
 }

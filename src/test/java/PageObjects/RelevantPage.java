@@ -1,15 +1,16 @@
-package PageObjects.SocialMediaPages;
+package PageObjects;
 
 import org.openqa.selenium.WebDriver;
 
-public class Facebook {
+public class RelevantPage {
 
     WebDriver browser;
 
-    public Facebook(WebDriver driver) {
+    public RelevantPage(WebDriver driver) {
 
         this.browser = driver;
     }
+
     public String verifyPage() {
 
         return browser.getCurrentUrl();

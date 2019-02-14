@@ -1,16 +1,16 @@
-package PageObjects.SocialMediaPages;
+package PageObjects.ThirdPartyLinkedPages;
 
 import org.openqa.selenium.WebDriver;
 
-public class LinkedIn {
+public class GoogleMaps {
 
     WebDriver browser;
 
-    public LinkedIn(WebDriver driver) {
+    public GoogleMaps(WebDriver driver) {
 
         this.browser = driver;
     }
-    public String verifyPage() {
+    public String getPageTitle() {
 
         return browser.getTitle();
     }
