@@ -11,7 +11,7 @@ public class RelevantPage {
         this.browser = driver;
     }
 
-    public String verifyPage() {
+    public String getPageUrl() {
 
         return browser.getCurrentUrl();
     }

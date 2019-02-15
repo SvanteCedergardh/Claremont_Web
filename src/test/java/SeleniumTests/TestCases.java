@@ -2,6 +2,7 @@ package SeleniumTests;
 
 import PageObjects.*;
 import PageObjects.BlueContainer.Footer;
+import PageObjects.BlueContainer.TopMenu;
 import PageObjects.ThirdPartyLinkedPages.Facebook;
 import PageObjects.ThirdPartyLinkedPages.GoogleMaps;
 import PageObjects.ThirdPartyLinkedPages.Instagram;
@@ -50,7 +51,6 @@ public class TestCases {
 
         browser.quit();
     }
-
     @Test
     public void getPageUrl() {
 
@@ -78,7 +78,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         WhatWeDo wwdPage = footer.visitWhatWeDo();
 
-        Assert.assertEquals(whatWeDoPageUrl, wwdPage.verifyPage());
+        Assert.assertEquals(whatWeDoPageUrl, wwdPage.getPageUrl());
     }
     @Test
     public void clickOnWhatWeHaveDoneLinkInFooter() {
@@ -86,7 +86,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         WhatWeHaveDone wwhdPage = footer.visitWhatWeHaveDone();
 
-        Assert.assertEquals(whatWeHaveDonePageUrl, wwhdPage.verifyPage());
+        Assert.assertEquals(whatWeHaveDonePageUrl, wwhdPage.getPageUrl());
     }
     @Test
     public void clickOnWorkForUsLinkInFooter() {
@@ -94,7 +94,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         WorkForUs wfuPage = footer.visitWorkForUs();
 
-        Assert.assertEquals(workForUsPageUrl, wfuPage.verifyPage());
+        Assert.assertEquals(workForUsPageUrl, wfuPage.getPageUrl());
     }
     @Test
     public void clickOnRelevantLinkInFooter() {
@@ -102,7 +102,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         RelevantPage relevantPage = footer.visitRelevantPage();
 
-        Assert.assertEquals(relevantPageUrl, relevantPage.verifyPage());
+        Assert.assertEquals(relevantPageUrl, relevantPage.getPageUrl());
     }
     @Test
     public void clickOnAboutUsLinkInFooter() {
@@ -110,8 +110,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         AboutUs aboutUsPage = footer.visitAboutUsPage();
 
-        Assert.assertEquals(aboutUsPageUrl, aboutUsPage.verifyPage());
-
+        Assert.assertEquals(aboutUsPageUrl, aboutUsPage.getPageUrl());
     }
     @Test
     public void clickOnContactLinkInFooter() {
@@ -121,14 +120,13 @@ public class TestCases {
 
         Assert.assertEquals(contactPageUrl, contactPage.getPageUrl());
     }
-
     @Test
     public void clickOnInstagramLinkInFooter() {
 
         Footer footer = new Footer(browser);
         Instagram instagram = footer.visitInstagram();
 
-        Assert.assertEquals(instagramPage, instagram.verifyPage());
+        Assert.assertEquals(instagramPage, instagram.getPageUrl());
     }
     @Test
     public void clickOnFacebookLinkInFooter() {
@@ -136,7 +134,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         Facebook facebook = footer.visitFacebook();
 
-        Assert.assertEquals(facebookPage, facebook.verifyPage());
+        Assert.assertEquals(facebookPage, facebook.getPageUrl());
     }
     @Test
     public void clickOnLinkedInLinkInFooter() {
@@ -144,7 +142,7 @@ public class TestCases {
         Footer footer = new Footer(browser);
         LinkedIn linkedIn = footer.visitLinkedIn();
 
-        Assert.assertEquals(linkedInTitle, linkedIn.verifyPage());
+        Assert.assertEquals(linkedInTitle, linkedIn.getPageTitle());
     }
     @Test
     public void clickOnAddressInFooter() {
@@ -168,5 +166,110 @@ public class TestCases {
 
         Assert.assertEquals(visibleEmailAddress, footer.getEmailAddress());
     }
+    @Test
+    public void clickOnWhatWeDoLinkInTopMenu() {
 
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        WhatWeDo wwdPage = topMenu.visitWhatWeDo();
+
+        Assert.assertEquals(whatWeDoPageUrl, wwdPage.getPageUrl());
+    }
+    @Test
+    public void clickOnWhatWeHaveDoneLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        WhatWeHaveDone wwhdPage = topMenu.visitWhatWeHaveDone();
+
+        Assert.assertEquals(whatWeHaveDonePageUrl, wwhdPage.getPageUrl());
+    }
+    @Test
+    public void clickOnWorkForUsLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        WorkForUs wfuPage = topMenu.visitWorkForUs();
+
+        Assert.assertEquals(workForUsPageUrl, wfuPage.getPageUrl());
+    }
+    @Test
+    public void clickOnRelevantLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        RelevantPage relevantPage = topMenu.visitRelevantPage();
+
+        Assert.assertEquals(relevantPageUrl, relevantPage.getPageUrl());
+    }
+    @Test
+    public void clickOnAboutUsLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        AboutUs aboutUsPage = topMenu.visitAboutUsPage();
+
+        Assert.assertEquals(aboutUsPageUrl, aboutUsPage.getPageUrl());
+    }
+    @Test
+    public void clickOnContactLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        Contact contactPage = topMenu.visitContactPage();
+
+        Assert.assertEquals(contactPageUrl, contactPage.getPageUrl());
+    }
+    @Test
+    public void clickOnInstagramLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        Instagram instagram = topMenu.visitInstagram();
+
+        Assert.assertEquals(instagramPage, instagram.getPageUrl());
+    }
+    @Test
+    public void clickOnFacebookLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        Facebook facebook = topMenu.visitFacebook();
+
+        Assert.assertEquals(facebookPage, facebook.getPageUrl());
+    }
+    @Test
+    public void clickOnLinkedInLinkInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        LinkedIn linkedIn = topMenu.visitLinkedIn();
+
+        Assert.assertEquals(linkedInTitle, linkedIn.getPageTitle());
+    }
+    @Test
+    public void clickOnAddressInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+        GoogleMaps googleMapsPage = topMenu.goToAddress();
+
+        Assert.assertEquals(googleMapsTitle, googleMapsPage.getPageTitle());
+    }
+    @Test
+    public void checkPhoneNumberInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+
+        Assert.assertEquals(visiblePhoneNumber, topMenu.getPhoneNumber());
+    }
+    @Test
+    public void checkMailAddressInTopMenu() {
+
+        TopMenu topMenu = new TopMenu(browser);
+        topMenu.clickOnTopMenuButton();
+
+        Assert.assertEquals(visibleEmailAddress, topMenu.getEmailAddress());
+    }
 }

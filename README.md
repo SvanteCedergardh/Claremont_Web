@@ -11,9 +11,14 @@
 ---
 
 ##14/02/2019
-* Added test cases for checking social media links (Instagram, Facebook and LinkedIn)
 * Removed class "SocialMediaLinks"
 * Added test cases to check all links in footer
 ---
 * Bug2: When the window is downscaled in the chrome web browser, elements such as text, pictures and buttons overlap each other. Seems like the website is not responsive
 ---
+
+##15/02/2019
+* Added test cases to check all links in top menu ("Hamburger menu")
+* Renamed all "verifyPage"-methods to "getPageTitle" and "getPageUrl"
+---
+

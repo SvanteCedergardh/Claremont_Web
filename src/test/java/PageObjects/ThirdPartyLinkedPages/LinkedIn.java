@@ -10,7 +10,7 @@ public class LinkedIn {
 
         this.browser = driver;
     }
-    public String verifyPage() {
+    public String getPageTitle() {
 
         return browser.getTitle();
     }
